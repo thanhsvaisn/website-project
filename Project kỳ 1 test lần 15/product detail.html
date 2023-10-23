@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/html.css">
+    <link rel="stylesheet" href="css/mainpage.css">
+
+    <style>
+        .tab-pane.tab-pane-detail {
+            padding: 0;
+        }
+        .nav-link-detail {
+            width: 100%;
+        }
+        .nav-link-detail::after {
+            content: '+';
+            float: right;
+            font-size: 20px;
+        }
+        .nav-link-detail.active::after {
+            content: '-';
+            float: right;
+            font-size: 20px;
+        }
+        .tab-pane-detail p {
+            margin: 8px 0;
+        }
+        .nav-link-button:hover {
+            background-color: white;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <header id="header"></header>
+
+    <main class="container-fluid">
+        <div class="nav-present">
+            <ol>
+                <li><a class="nav-small" href="home.html">Home</a></li>
+                <li><a class="nav-small" href="product.html">Fridges</a></li>
+                <li>Item-1</li>
+            </ol>
+        </div>
+        
+        <div class="row">
+            <div class="col-12 col-sm-7">
+                <div class="" id="test">
+                    <div id="carouselExample" class="carousel slide">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="background-color: black;"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" style="background-color: black;"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3" style="background-color: black;"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="images/1.jpg" class="d-block mx-auto" alt="..." style="max-width: 100%;">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/1.jpg" class="d-block mx-auto" alt="..." style="max-width: 100%;">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/1.jpg" class="d-block mx-auto" alt="..." style="max-width: 100%;">
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev" color>
+                                <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: black;"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: black;"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-5">
+                <div class="product-detail" id="F0101">
+                    <div class="infomation-name">
+                        <h5 class="card-title">Washing machine I-Pro Series 7</h5>
+                        <h6>Freestanding, 12 Kg, 1400 RPM, Engine Direct Motion, Class A, White, 14 programs, W x D x H (cm) 60x69x85</h6>
+                        <p class="priceP"><span class="product-price">500</span> $</p>
+                        <img src="images/1.jpg" class="card-img-top d-none" alt="...">
+                    </div>
+                    <div class="infomation-detail">
+                        <p class="card-subtitle mb-2 text-body-secondary">•Direct Motion Motor</p>
+                        <p class="card-subtitle mb-2 text-body-secondary">•Refresh</p>
+                        <p class="card-subtitle mb-2 text-body-secondary">•Automatic cleaning system</p>
+                        <p class="card-subtitle mb-2 text-body-secondary">•Steam diffusion</p>
+                        <p class="card-subtitle mb-2 text-body-secondary">•Anti-Bacterial Treatment</p>
+                        <div class="collapse" id="collapseExample">
+                            <p class="card-subtitle mb-2 text-body-secondary">•Pillow drum for delicate fabrics</p>
+                            <p class="card-subtitle mb-2 text-body-secondary">•Drum light</p>
+                            <p class="card-subtitle mb-2 text-body-secondary">•Adjustable cycle duration</p>
+                            <p class="card-subtitle mb-2 text-body-secondary">•Automatic weight detection</p>
+                            <p class="card-subtitle mb-2 text-body-secondary">•12kg drum capacity</p>
+                        </div>
+                        <button class="btn btn-link more-detail collapsed" data-bs-toggle="collapse" data-bs-target="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"></button>
+                    </div>    
+                    <div ng-repeat="product in products" id="Magic">
+                        <a class="addCart" data-toggle="modal" data-target="#myModalAdd" onclick="addCart(this)">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Add To Cart
+                        </a>
+                   </div>
+                    <span class="clearfix"></span>
+                    <div class="alert alert-success alert-dismissable" ng-if="message">
+                        <a href="#" class="close" ng-click="clearMessage()">&times;</a>
+                        <strong>{{message}}!</strong>
+                    </div>
+                    <div class="modal fade" id="myModalAdd" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Add Product</h4>
+                                    <button type="button" class="close" data-dismiss="modal">x</button>
+                                </div>
+                                <div class="modal-body">
+                                    <strong style="color: red">Are you sure you want to buy this Product?</strong>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addProduct()">Yes</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" >No</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section style="height: 300px; background-color: hsla(0,0%,93%,.5);">
+                <div class="row d-flex justify-content-center" style="margin-top: 20px;">
+                    <div class="col-lg-10 row">
+                        <div class="col-4 d-flex justify-content-center">
+                            <div style="text-align: center;">
+                                <div style="height: 100px; display: flex; align-items: center; justify-content: center;">
+                                    <img src="https://www.haier-europe.com/adapt-image/1460319/free_shipping?version=1.0&t=1637071842946" alt="" style="width: 70px;">
+                                </div>
+                                <div>   
+                                    Free Delivery, Free Installation
+                                </div>
+                                <div style="margin: 4px 20px;">
+                                    Our logistics partner will contact you within 24hrs after ordering to arrange a convenient day for delivery
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 d-flex justify-content-center">
+                            <div style="text-align: center;">
+                                <div style="height: 100px; display: flex; align-items: center; justify-content: center;">
+                                    <img src="https://www.haier-europe.com/adapt-image/53493/Pagamenti_sicuri.svg?version=1.0&t=1618501982110" alt="" style="width: 70px;">
+                                </div>
+                                <div>
+                                    Up to 5 Years Warrant
+                                </div>
+                                <div style="margin: 4px 20px;">
+                                    Flexible Payment Options - Buy now, pay later with Paypal, Klarna Pay in 3 and Klarna Pay in 30 days, or pay via debit card or credit card.                            </div>
+                                </div>
+                            </div>
+                        <div class="col-4 d-flex justify-content-center">
+                            <div style="text-align: center;">
+                                <div style="height: 100px; display: flex; align-items: center; justify-content: center;">
+                                    <img src="https://www.haier-europe.com/adapt-image/1623840/warrantyblack?version=1.0&t=1638532562130" alt="" style="width: 65px;">
+                                </div>
+                                <div>
+                                    Free Delivery, Free Installation
+                                </div>
+                                <div style="margin: 4px 20px;">
+                                    Selected products have 5 years warranty; all appliances have a minimum of 2 years warranty
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <button class="btn" style="margin: 20px 0 0;"><a href="https://docs.google.com/document/d/1eqTxQsmR46LxDWuGi1be8yw6nav5lGWk5ZGdzGAVTqM/edit?usp=sharing" download="Washing machine I-Pro Series 7"><i class="fa-solid fa-download"></i>Product Sheet</a></button>
+            
+            <section style="margin: 60px 0; " class="d-flex justify-content-center row">
+                <div class="d-flex justify-content-center align-items-start row col-11" style="background-color: hsla(0,0%,93%,.5);box-shadow: 0 0 18px 8px rgba(0,0,0,0.07000000000000001); padding: 0;">
+
+                    <div class="nav flex-column nav-pills col-5" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="padding-right: 0;">
+                        <div class="nav-link-button">
+                            <button class="nav-link active text-start nav-link-detail" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">MAIN FEATURES
+                            </button>
+                            
+                        </div>
+                        <div class="nav-link-button">
+                            <button class="nav-link text-start nav-link-detail" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">TECHNICAL FEATURES</button>
+                            
+                        </div>
+                        <div class="nav-link-button">
+                            <button class="nav-link text-start nav-link-detail" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#v-pills-disabled" type="button" role="tab" aria-controls="v-pills-disabled" aria-selected="false">PROGRAMMES AND FUNCTIONS</button>
+                            
+                        </div>
+                        <div class="nav-link-button">
+                            <button class="nav-link text-start nav-link-detail" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">AESTHETIC</button>
+                            
+                        </div>
+                        <div class="nav-link-button">
+                            <button class="nav-link text-start nav-link-detail" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">PERFORMANCE AND CONSUMPTION</button>
+                            
+                        </div>
+                        <div class="nav-link-button">
+                            <button class="nav-link text-start nav-link-detail" id="v-pills-s-tab" data-bs-toggle="pill" data-bs-target="#v-pills-s" type="button" role="tab" aria-controls="v-pills-s" aria-selected="false">DIMENSIONS</button>
+                            
+                        </div>
+                    </div>
+
+                    <div class="tab-content col-7" id="v-pills-tabContent" style="background-color: white; height: 100%;">
+                        <div class="tab-pane tab-pane-detail fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
+                            <p>Product name / Commercial code : HW120-B14979</p>
+                            <hr>
+                            <p>EAN Code : 6921081584828</p>
+                            <hr>
+                            <p>Built-in / Freestanding : Freestanding</p>
+                            <hr>
+                            <p>Loading type : Front</p>
+                            <hr>
+                            <p>Capacity (kg) : 12</p>
+                            <hr>
+                            <p>Maximum spin speed (rpm) : 1400</p>
+                        </div>
+                        <div class="tab-pane tab-pane-detail fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+                            <p>Connectivity : None</p>
+                            <hr>
+                            <p>Motor type : Direct Motion</p>
+                            <hr>
+                            <p>Drum volume : Drum volume</p>
+                            <hr>
+                            <p>Drum material : Stainless Steel</p>
+                            <hr>
+                            <p>Plug type : UK</p>
+                            <hr>
+                            <p>Voltage (V) : 220-240</p>
+                        </div>
+                        <div class="tab-pane tab-pane-detail fade" id="v-pills-disabled" role="tabpanel" aria-labelledby="v-pills-disabled-tab" tabindex="0">
+                            <p>Number of programmes : HW120-B14979</p>
+                            <hr>
+                            <p>Start delay options : Yes (up to 24h)</p>
+                            <hr>
+                            <p>Steam programme : Yes</p>
+                        </div>
+                        <div class="tab-pane tab-pane-detail fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">
+                            <p>Colour : White</p>
+                            <hr>
+                        </div>
+                        <div class="tab-pane tab-pane-detail fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabindex="0">
+                            <p>Energy class : A</p>
+                            <hr>
+                            <p>Spin-drying efficiency class : B </p>
+                            <hr>
+                            <p>Weighted energy consumption [100 cycles, eco 40-60] : 54</p>
+                            <hr>
+                            <p>Programme duration Rated capacity : 3:58</p>
+                            <hr>
+                            <p>Noise level spinning (dB) (A) : 69</p>
+                            <hr>
+                            <p>Airborn acoustical noise emission class : A</p>
+                            <hr>
+                            <p>Water consumption : 56</p>
+                        </div>
+                        <div class="tab-pane tab-pane-detail fade" id="v-pills-s" role="tabpanel" aria-labelledby="v-pills-s-tab" tabindex="0">
+                            <p>Height of the product : 85</p>
+                            <hr>
+                            <p>Width of the product : 60</p>
+                            <hr>
+                            <p>Full depth (door and pipes included) : 69</p>
+                            <hr>
+                            <p>Cabinet depth (without pipes and door) : 600</p>
+                            <hr>
+                            <p>Packaged Product Height (mm) : 890</p>
+                            <hr>
+                            <p>Width of the packed product (mm) : 653</p>
+                            <hr>
+                            <p>Packaged Product Depth(mm) : 714</p>
+                            <hr>
+                            <p>Net weight (kg) : 80</p>
+                            <hr>
+                            <p>Gross weight (kg) : 86</p>
+                        </div>
+                        </div>
+                  </div>
+            </section>
+        </div>
+    </main>
+    <footer id="footer"></footer>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<!-- <script src="js/productList.js"></script> -->
+<script src="js/header.js"></script>
+<script src="js/home.js"></script>
+<script>
+    // fetch('header only.html')
+    //     .then(response => response.text())
+    //     .then(data => {
+    //         document.getElementById('header').innerHTML = data;
+    //     });
+    fetch('footer only.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer').innerHTML = data;
+        });
+
+</script>
+
+<script>
+    let cartItems = loadCartFromLocalStorage();
+
+    function loadCartFromLocalStorage() {
+    const savedCartItems = localStorage.getItem('cartItems');
+    return savedCartItems ? JSON.parse(savedCartItems) : [];
+    
+    }
+
+    function addCart (cart) {
+    // Get the product-detail parent of the "Add To Cart" button
+    const productDetail = cart.closest('.product-detail');
+    // Get the product's id
+    const productIdp = productDetail.id;
+    // Get the product's title (cart-title)
+    const productTitle = productDetail.querySelector('.card-title').textContent;
+    // Get the price of the product (product-price)
+    const productPrice = productDetail.querySelector('.product-price').textContent;
+    // Display information or perform necessary operations with this information
+    const productImg = productDetail.querySelector('.card-img-top').getAttribute('src');
+    console.log('Product ID:', productIdp);
+    console.log('Product Title:', productTitle);
+    console.log('Product Price:', productPrice);
+    console.log('Product Image:', productImg);
+
+    if (productTitle && productPrice && productImg) {
+        const productOfDetail = {
+            id: productIdp,
+            src: productImg,
+            title: productTitle,
+            price: productPrice,
+        };
+
+        const existingProduct = cartItems.findIndex(item => item.id === productOfDetail.id);
+        
+        if (existingProduct !== -1) {
+            alert('This product has already been added')
+        } else {
+            cartItems.push(productOfDetail);
+            alert('Product added to cart:');
+            saveCartToLocalStorage();
+            // Display product information in the shopping cart
+            console.log(productOfDetail);
+        }
+    }
+}
+
+    //Create an event when clicking the Add To Cart button
+    document.addEventListener('AddCart', function () {
+        const addToCartButtons = document.querySelectorAll('.addCart');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.stopPropagation();
+                addCart(cart);
+
+            });
+        });
+    });
+
+    function saveCartToLocalStorage() {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+}
+
+window.addEventListener('beforeunload', () => {
+    saveCartToLocalStorage();
+});
+</script>
+</html>

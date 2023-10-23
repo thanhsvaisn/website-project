@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="css\mainpage.css"
+      class=""
+    />
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css" crossorigin="anonymous">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/mainpage.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js" crossorigin="anonymous"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+  </head>
+  <body class="body">
+    <div id="header"></div>
+    <div class="container-form">
+    <div class="main__form">
+      <div class="container container__form__SignUp container__form">
+        <form action="" class="myForm">
+          <h2 class="form__title form__h2__title">Create Account</h2>
+          <div class="container__input">
+            <input
+              type="text"
+              class="input__user form__input"
+              placeholder="Name"
+            />
+            <p class="message-username "></p>
+            <input
+              type="text"
+              placeholder="Email"
+              class="form__input input__email"
+            />
+            <span class="message-email"></span>
+            <div class="position-relative">
+              <input
+                type="password"
+                placeholder="Password"
+                class="form__input show-password input__password"
+              />
+              <i class="icon-show-password bi bi-eye-slash"></i>
+            <p class="message-password"></p>
+            <p class="message-succes position-absolute"></p>
+          </div>
+
+            <button class="btn__GignUp form__Btn">SIGN UP</button>
+          </div>
+        </form>
+      </div>
+      <div class="container container__form__SignIn container__form">
+        <form action="" class="myForm">
+          <h2 class="form__title form__h2__title">Sign in to Website</h2>
+          <div class="container__input flex-lg-nowrap">
+            <input
+              type="text"
+              class="form__input input__user__signin"
+              placeholder="UserName"
+            />
+            <p class="user__error__signin"></p>
+            <div class="position-relative">
+            <input
+              type="password"
+              placeholder="Password"
+              class="form__input show-password input__password__signin"
+            />
+            <i class="icon-show-password bi bi-eye-slash"></i>
+          </div>
+          <p class="password__error__signin"></p>
+
+              <p class="message-success"></p>
+            <button class="btn__GignIn form__Btn">SIGN IN</button>
+          </div>
+        </form>
+      </div>
+      <div class="container__switch">
+        <div class="switch__SignIn">
+          <h2 class="switch__title form__h2__title">Welcome Back !</h2>
+          <p class="switch__description">
+            To keep connected with us please login with your personal info
+          </p>
+          <button class="btn__Change chane__SignIn form__Btn">SIGN IN</button>
+        </div>
+        <div class="switch__SignUp hidden">
+          <h2 class="switch__title form__h2__title">Hello Friend !</h2>
+          <p class="switch__description">
+            Enter your personal details and start journey with us
+          </p>
+          <button class="btn__Change chane__SignUp form__Btn">SIGN UP</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer"></div>
+  </body>
+  <script src="js\login.js"></script>
+<script src="js/header.js">
+
+// Sử dụng Fetch API để tải nội dung từ tệp khác
+</script>
+
+  <script> 
+    const formSignIn = document.querySelector(".container__form__SignIn");
+    const formSignUp = document.querySelector(".container__form__SignUp");
+    const btnChange = document.querySelectorAll(".btn__Change");
+    const switchSignUp = document.querySelector(".switch__SignUp");
+    const switchSignIn = document.querySelector(".switch__SignIn");
+    const btnSignUp = document.querySelector(".btn__switch__SignUp");
+    const btnSigIn = document.querySelector(".btn__switch__SignIn");
+    const timeChange = document.querySelector(".container__switch");
+    let getButtons = (e) => e.preventDefault();
+
+    let changeForm = (e) => {
+      timeChange.classList.add("change__form");
+      setTimeout(function () {
+        timeChange.classList.remove("change__form");
+      }, 1500);
+      timeChange.classList.toggle("change__direction__right");
+      timeChange.classList.toggle("display__section");
+      switchSignUp.classList.toggle("hidden");
+      switchSignIn.classList.toggle("hidden");
+      formSignUp.classList.toggle("change__direction__left");
+      formSignIn.classList.toggle("change__direction__left");
+      formSignIn.classList.toggle("display__section");
+    };
+
+    for (var i = 0; i < btnChange.length; i++) {
+      btnChange[i].addEventListener("click", changeForm);
+    }
+  </script>
+</html>

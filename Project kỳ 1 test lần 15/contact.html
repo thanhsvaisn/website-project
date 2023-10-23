@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/mainpage.css">
+    <style>
+        .icon-border {
+            border: 1px solid black;
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .contact-list {
+            margin-bottom: 15px;
+        }
+        .contact-detail {
+            margin: 0;
+        }
+        .contact-input {
+            margin-bottom: 20px;
+            width: 90%;
+        }
+        .textarea.form-control {
+            max-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <header id="header"></header>
+    <main>
+    <h1 class="web-title">Contact Us</h1>
+        <section class="container-fluid">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-lg-4">
+
+                    <div class="row" style="margin-left: 40px;">
+                        <div class="col-12">
+                            <div class="row contact-list">
+                                <div class="col-1 icon-border">
+                                    <i class="fa-solid fa-location-dot" style="color: #ff0000; font-size: 20px;"></i>
+                                </div>
+                                <div class="col-11 d-flex align-items-center">
+                                    <p class="contact-detail">Số 1 Phùng Chi Kiên,Nghĩa Đô,Cầu Giấy,Hà Nội</p>
+                                </div>
+                            </div>
+                            <div class="row contact-list">
+                                <div class="col-1 icon-border">
+                                    <i class="fas fa-mobile-alt" style="font-size: 20px;"></i>
+                                </div>
+                                <div class="col-11 d-flex align-items-center">
+                                    <p class="contact-detail">0339.529.966</p>
+                                </div>
+                            </div>
+                            <div class="row contact-list" onclick="openMailApp()" id="contact">
+                                <div class="col-1 icon-border">
+                                    <i class="fa-regular fa-envelope" style="color: #ff0a0a; font-size: 20px;"></i>
+                                </div>
+                                <div class="col-11 d-flex align-items-center">
+                                    <p class="contact-detail">huge4x7@gmail.com</p>
+                                </div>
+                            </div>
+
+                            <!-- <a href="#" onclick="openMailApp()" id="contact">
+                                <i class="fa-regular fa-envelope" style="color: #ff0a0a;"></i>
+                                Email : huge4x7@gmail.com
+                            </a> -->
+                            <div class="form__icons" style="font-size: 30px;">
+                                <a href="https://www.facebook.com/ho.ca.5095"><i class="fab fa-facebook-f form__icon"></i></a>
+                                <a href="https://www.instagram.com/huge4x7/"><i class="fab fa-instagram form__icon"></i></a>
+                                <a href="#"><i class="fa-brands fa-github form__icon"></i></a>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="col-12">
+                            <form id="Damian">
+                                <!-- <label for="ten">Enter Your Name</label> -->
+                                <input class="contact-input" type="text" step="0.01" id="ten" placeholder="Full Name" required>
+        
+                                <!-- <label for="email">Email</label> -->
+                                <input class="contact-input" type="email" step="0.01" id="email" placeholder="Email" required>
+        
+                                <!-- <label for="request">Your Message</label> -->
+                                <!-- <input class="contact-input" type="text" step="0.01" id="request" placeholder="Content" required> -->
+                                <div class="input-group contact-input" style="width: 90%;">
+                                    <textarea class="form-control contact-input" aria-label="With textarea" id="request" placeholder="Content" required></textarea>
+                                </div>
+                                <input type="submit" onclick="gui(); return false;" id="submit-form" value="Send" style="padding: 10px 20px"/>
+                                <div id="success"></div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-7">
+                    <div class="row" style="margin-top: 15px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.719231574761!2d105.80055017417816!3d21.04391738060918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab3c2cac476f%3A0x4bb0919fd4193b22!2zMSBQLiBQaMO5bmcgQ2jDrSBLacOqbiwgTmdoxKlhIMSQw7QsIEPhuqd1IEdp4bqleSwgSMOgIE7hu5lpIDEwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1696931480017!5m2!1svi!2s" height="450" style="border: 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+   </main>
+   <footer id="footer"></footer>
+   <script src="js/header.js"></script>
+   <script src="js/home.js"></script>
+   <script src="js\login.js"></script>
+
+    <script>
+        // fetch('header only.html')
+        //     .then(response => response.text())
+        //     .then(data => {
+        //         document.getElementById('header').innerHTML = data;
+        //     });
+        fetch('footer only.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+            
+        document.getElementById("Damian").addEventListener("submit", function (gui) {
+            gui.preventDefault();
+            var name = document.getElementById("ten").value;
+            var Email = document.getElementById("email").value;
+            var Request = document.getElementById("request").value;
+            if (name && Email && Request) {
+                document.getElementById("success").innerText="Successfully";
+                document.getElementById("Damian").reset();
+            }
+        });
+        function openMailApp() {
+            window.location.href = 'mailto:huge4x7@gmail.com';
+        }
+    </script>
+</body>
+</html>

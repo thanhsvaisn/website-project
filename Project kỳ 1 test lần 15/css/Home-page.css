@@ -1,0 +1,150 @@
+* {
+    margin:0;
+    box-sizing: border-box;
+    padding:0;  
+}
+
+#carouselExampleIndicators [data-bs-slide-to] {
+    position: relative;
+    width:70px;
+    height:40px;
+    border-top: 0;
+    border-bottom:0;
+    margin-left: 3px;
+    margin-right:20px ;
+    background-color: transparent;
+    overflow: hidden; 
+}
+#carouselExampleIndicators [data-bs-slide-to]::after{
+    content:"6";
+    width:70px;
+    position: absolute;
+    height:4px;
+    display:block;
+    background-color: #fff;
+    overflow: hidden;
+    border-radius: 12px;
+}
+.carousel-indicators{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+/* / Đặt các phần tử SVG để canh chỉnh chúng vào giữa / */
+.btn-svg {
+    cursor: pointer;
+    padding: 15px;
+    box-sizing: content-box;
+
+}
+.label-slider-1{
+    color:#fff;
+}
+.btn-start{
+    display:none;
+}
+.btn-pause{
+    display: block;
+}
+.list-label{
+    position: absolute;
+    z-index: 2;
+    top:45%;
+    transform: translate(20%,-50%);
+    width:40%;
+    box-sizing: border-box;
+    
+}
+
+.list-label .h1-label-siler-1{
+    font-size: 3.2rem ;
+    font-family: Calibri,carlitobold;
+    font-weight: 700 ;
+    margin-bottom: 20px;
+    line-height: 1;
+}
+.div-label-slider-1{
+    font-size: 1.4rem;
+    margin-bottom: 48px;
+}
+.a-label-slider{
+    color: black;
+    padding: 10px 32px;
+    background:#fff;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 22px;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+.a-label-slider:hover{
+    opacity: .7;
+    transition:opacity .2s ease-in-out ;
+}
+.carousel-control-next, .carousel-control-prev{
+    height:max-content;
+    background:#3a3939;
+    width:max-content;
+    border-radius: 50%;
+    width:40px;
+    opacity: 1;
+    margin-top: auto;
+    margin-bottom: auto;
+    height:40px;
+}
+.carousel-control-next:hover,.carousel-control-prev:hover {
+    opacity: 0.5;
+    transition: opacity 0.4s ease-in-out; 
+    /* / Sử dụng transition thay vì animation / */
+}
+
+.carousel-control-next{
+    margin-right: 24px;
+}
+.carousel-control-prev{
+    margin-left: 24px;
+}
+body{
+    height:1000px;
+}
+header{
+    position: fixed;
+    top:0;
+    z-index: 10;
+}
+button {
+    border-width:0;
+    height: max-content;
+}
+.play-dark-back{
+    opacity:.8;
+}
+.btn-play{
+    background-color: transparent;
+    margin-left: 30px;
+    transform: translateY(-8%);
+}
+
+.list-item-slider > .active {
+    display: flex;
+    justify-content: center;
+}
+.list-item-slider .list-label{
+    transform: translate(50%,-50%);
+
+}
+.list-item-slider .label-slider-1{
+    text-align: right;
+}
+.flex-end{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.list-item-slider .list-label {
+    transform: translate(50%,-50%);
+    height: max-content;
+}
+.list-item-slider .div-label-slider-1{
+    margin-bottom: 12px;
+}

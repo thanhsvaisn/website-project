@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/mainpage.css">
+</head>
+<body>
+    <header id="header"></header>
+
+    <main class="container-fluid" style="min-height: 500px;">
+        <h1 class="web-title">Shopping Cart</h1>
+
+        <div class="cart-message" style="margin-left: 50px; margin-top: 20px; font-size: 18px;">
+            You have no items in your shopping cart.
+            <div style="margin-top: 10px;">
+                <a href="home.html">
+                    <button style="font-size: 20px; padding: 10px 20px; border-radius: 5px;">
+                       << Back to shop
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <div class="cart-info">
+            <div class="cart">
+                <div class="row">
+                    <div class="summary col-lg-4 col-12 order-lg-2" style="font-size: 30px; box-shadow: 0 0 18px 8px rgba(0,0,0,0.07000000000000001);">
+                        SUMMARY
+                        <hr>
+                        <div style="font-size: 20px; margin-top: 15px;">
+                            Order Total
+                            <span id="all-subtotal" style="float: right;"></span>
+                        </div>
+                        <!-- <div>
+                            Shipping
+                            <span style="float: right;">50 $</span>
+                        </div>
+                        <hr>
+                        <div>
+                            Order Total
+                            <span style="float: right;">...</span>
+                        </div> -->
+                        <div>
+                            <button class="confirm-cart" id="confirm-cart" style="font-size: 20px; padding: 10px 20px; border-radius: 5px; float: right; margin-top: 20px;  margin-bottom: 20px;">Order</button>
+                        </div>
+                    </div>
+    
+                    <div class="titleOfCart col-lg-8 col-12 order-lg-1">
+                        <div class="row cart-table-title d-flex justify-content-center" style="margin-bottom: 15px;font-size: 20px;">
+                            <div class="col-5">
+                                Item
+                            </div>
+                            <div class="col-2">
+                                Price
+                            </div>
+                            <div class="col-2 text-center">
+                                Quantity
+                            </div>
+                            <div class="col-2 text-center">
+                                Subtotal
+                            </div>
+                            <div class="col-1">
+                            </div>
+                            
+                        </div>
+                            <hr>
+                        <div class="cart-list">
+                            <!-- <div class="cart-item">
+                                <div class="row" id="">
+                                    <div class="col-5">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <img src="images/1.jpg" class="cart-img">
+                                            </div>
+                                            <div class="col-7 cart-img-detail">
+                                                chi tiết ảnh    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="cart-unit-price">
+                                            900
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="cart-quantity" style="display: flex; align-items: center; justify-content: space-between;">
+                                            <button class="decrement" style="border: none; background-color: white; margin-left: 5px;"><span><i class="fas fa-minus-circle"></i></span></button>
+                                            <input class="number-of-product" type="number" name="soluong" min="1" max="9" value="1" style="border: none; text-align: center;">
+                                            <button class="increment" style="border: none; background-color: white; margin-right: 5px;"><span><i class="fas fa-plus-circle"></i></span></button>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="cart-total">
+                                            <div class="total-of-product"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1 remove-button">
+                                        <a class="remove-product" href="#">REMOVE</a>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer id="footer" style="margin-top: 40px;"></footer>
+
+    <script src="js/header.js"></script>
+    <script src="js/home.js"></script>
+    <script>
+        fetch('footer only.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <script>
+        
+        // Check if there is data in localStorage
+        function CartEmpty() {
+            const savedCartItems = localStorage.getItem('cartItems');
+            return !savedCartItems || JSON.parse(savedCartItems).length === 0;
+        }
+
+        // Get the cart-message and cart-info elements from the HTML
+        const cartMessage = document.querySelector('.cart-message');
+        const cartInfo = document.querySelector('.cart-info');
+
+        // Hide or show elements based on test results
+        if (CartEmpty()) {
+            // If the cart is empty, show cart-message and hide cart-info
+            cartMessage.style.display = 'block';
+            cartInfo.style.display = 'none';
+        } else {
+            // Conversely, hide cart-message and show cart-info
+            cartMessage.style.display = 'none';
+            cartInfo.style.display = 'block';
+        }
+
+        
+        
+        // Declare the shopping cart storage variable
+        let cartItems = loadCartFromLocalStorage();
+
+        // The function checks if stored data is available in localStorage
+        function loadCartFromLocalStorage() {
+            const savedCartItems = localStorage.getItem('cartItems');
+            return savedCartItems ? JSON.parse(savedCartItems) : [];
+        }
+        
+
+
+        // Step 1: Get data from localStorage
+        const savedCartItems = localStorage.getItem('cartItems');
+
+        // const existIndexInCart = cartItems.findIndex(item => item.id === product.id);
+        // const indexInCart = cartItems.findIndex(item => item.quantity < 1);
+        // Step 2: Convert data from JSON string into JavaScript array
+        if (savedCartItems){
+            cartItems.forEach(item => {
+                // Add total information for each child object
+                item.total = item.quantity * item.price;
+            });
+        }
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        
+
+
+        // Function to display shopping cart
+        function displayCart() {
+            const cartList = document.querySelector('.cart-list');
+            while (cartList.firstChild) {
+                cartList.removeChild(cartList.firstChild);
+            }
+            const savedCartItems = localStorage.getItem('cartItems');
+            if (savedCartItems) {
+                cartItems = JSON.parse(savedCartItems);
+                cartItems.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `
+                    <div class="row" id="${item.id}">
+                        <div class="col-5">
+                            <div class="row">
+                                <div class="col-5">
+                                    <img src="${item.src}" class="cart-img">
+                                </div>
+                                <div class="col-7 cart-img-detail">
+                                    ${item.title}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="cart-unit-price">
+                                ${item.price} $
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="cart-quantity" style="display: flex; align-items: center; justify-content: space-between;">
+                                <button class="decrement" style="border: none; background-color: white; margin-left: 5px;"><span><i class="fas fa-minus-circle"></i></span></button>
+                                <input class="number-of-product" type="number" name="soluong" min="1" max="9" value="${item.quantity}" style="border: none; text-align: center;">
+                                <button class="increment" style="border: none; background-color: white; margin-right: 5px;"><span><i class="fas fa-plus-circle"></i></span></button>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="cart-total total-of-product text-center">
+                                ${item.total} $
+                            </div>
+                        </div>
+                        <div class="col-1 remove-button">
+                            <a class="remove-product" href="#">REMOVE</a>
+                        </div>
+                        <hr>
+                    </div>
+                    `;
+                    cartList.appendChild(cartItem);
+                });
+            }
+
+            // Set click event for "Order" button
+            const placeOrderButton = document.querySelector('.confirm-cart');
+            placeOrderButton.addEventListener('click', function () {
+                // alert('Order Success');
+                window.location.href = 'payment.html';
+                // localStorage.clear();
+            });
+        }
+
+        // Call the displayCart function to display the cart
+        displayCart();
+
+        const incrementButtons = document.querySelectorAll('.increment');
+        const decrementButtons = document.querySelectorAll('.decrement');
+        const quantityInputs = document.querySelectorAll('.number-of-product');
+        const totalDivs = document.querySelectorAll('.total-of-product');
+        const totalProduct = document.getElementById("all-subtotal");
+
+        // The function updates the total value
+        function updateTotal(index) {
+            const quantity = parseInt(quantityInputs[index].value);
+            const price = parseFloat(cartItems[index].price);
+            const total = quantity * price;
+            const totalDiv = totalDivs[index];
+            totalDiv.textContent = total + " $";
+            console.log('quantity:', quantity);
+            // Update values in 'cartItems' array
+            cartItems[index].quantity = quantity;
+            cartItems[index].total = total.toFixed(2);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            // Update the total value for the order
+            updateAllTotal();
+        }
+        
+        function updateAllTotal() {
+            // const cartData = JSON.parse(localStorage.getItem('cartData'));
+            let allTotalValue = 0;
+
+            totalDivs.forEach(totalDiv => {
+                allTotalValue += parseFloat(totalDiv.textContent.replace('$', '').trim());
+            });
+
+            totalProduct.textContent = allTotalValue.toFixed(2) + " $";
+            localStorage.setItem('Payment', totalProduct.textContent);
+            // Lỗi gọi chồng nhiều quá nên xóa tạm
+            // updateAllTotal();
+        }
+
+        // Function to save cart to localStorage
+        function saveCartToLocalStorage() {
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+
+        // Set click event for all elements with class "remove-product"
+        const removeProductButtons = document.querySelectorAll('.remove-product');
+        removeProductButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                const cartItem = button.closest('.cart-item');
+                const wusp = cartItem.querySelector('.row');
+                // console.log('wusp:', wusp);
+                const itemId = wusp.getAttribute('id');
+                // console.log('krem:',itemId);
+
+                // console.log('Trước khi xóa: ', cartItems);
+                cartItems = cartItems.filter(item => item.id !== itemId);
+                // console.log('Sau khi xóa: ', cartItems);
+                // console.log('Item ID:', itemId);
+                saveCartToLocalStorage();
+                // console.log("giá:", updateAllTotal());
+
+                // Xóa sản phẩm khỏi giao diện
+                cartItem.remove();
+                // console.log('cartItems:', cartItems);
+                alert('Xóa thành công');  
+                window.location.reload();
+                updateAllTotal();
+            });
+        });
+
+        incrementButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                quantityInputs[index].stepUp();
+                updateTotal(index);
+                updateAllTotal();
+
+                var soluong = quantityInputs.value;
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                console.log('localstorage:', cartItems);
+            });
+        });
+
+        // Set the event when the down button is clicked
+        decrementButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                // Set the event when the down button is clicked
+                quantityInputs[index].stepDown();
+                // Call the function to update the total value
+                updateTotal(index);
+                // Update the total value for the entire cart
+                updateAllTotal();
+            });
+        });
+       
+
+        updateAllTotal();
+
+
+            // document.addEventListener('inputQuantity', function() {
+
+        //     incrementButtons.forEach((button, index) => {
+        //     button.addEventListener('click', () => {
+        //         quantityInputs[index].stepUp();
+        //         updateTotal(index);
+        //         updateAllTotal();
+        //         });
+        //     });
+        
+        // // Đặt sự kiện khi nút giảm được bấm
+        // decrementButtons.forEach((button, index) => {
+        //     button.addEventListener('click', () => {
+        //         // Giảm giá trị của input
+        //         quantityInputs[index].stepDown();
+        //         // Gọi hàm cập nhật tổng giá trị
+        //         updateTotal(index);
+        //         // Cập nhật tổng giá trị cho toàn bộ giỏ hàng
+        //         updateAllTotal();
+        //         });
+        //     });
+        // })
+    </script>
+    <script src="js\login.js"></script>
+
+</body>
+</html>

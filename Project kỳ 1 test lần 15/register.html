@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/mainpage.css">
+</head>
+<body>
+    <header id="header"></header>
+
+    <main class="login-system">
+        <div class="login-bar">
+            <div class="login">
+                <strong class="login-title">REGISTER</strong>
+                <form>
+                    <div>
+                        <label>Username</label>
+                        <div>
+                            <input class="my-2" type="text" id="username" placeholder="Username" style="width: 250px;" required> 
+                        </div>
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <div>
+                            <input class="my-2" type="password" id="password" placeholder="********" style="width: 250px;" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Confirm Password</label>
+                        <div>
+                            <input class="my-2" type="password" id="Cpassword" placeholder="********" style="width: 250px;" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Mobile Phone</label>
+                        <div>
+                            <input class="my-2 mobile-phone-register" type="number" id="phone" placeholder="Mobile Number" style="width: 250px;" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Email</label>
+                        <div>
+                            <input class="my-2" type="email" id="emailRegister" placeholder="Email" style="width: 250px;" required>
+                        </div>
+                    </div>
+                    <button class="register-button mt-2" id="registerButton" type="submit" style="width: 100%;">Register</button>
+                    <div class="mt-3">
+                        <p>Already registered? <a href="login.html" style="text-decoration: none;">Sign-in</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer" style="margin-top: 40px;"></footer>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+<script src="js/header.js"></script>
+<script src="js/home.js"></script>
+
+<script>
+
+    // fetch('header only.html')
+    //     .then(response => response.text())
+    //     .then(data => {
+    //         document.getElementById('header').innerHTML = data;
+    //     });
+
+    fetch('footer only.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer').innerHTML = data;
+        });
+
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('Cpassword');
+    const phoneInput = document.getElementById('phone');
+    const emailInput = document.getElementById('emailRegister');
+    const registerButton = document.getElementById('registerButton');
+
+    // function to see if this username already exists on the system
+    function isUsernameTaken(username) {
+        const storedData = localStorage.getItem('registrationData');
+        
+        if (!storedData) {
+            return false; 
+        }
+        const registrationData = JSON.parse(storedData);
+        return registrationData.username === username;
+    }
+
+    // Handle the event when the Register button is pressed
+    registerButton.addEventListener('click', function (event) {
+    event.preventDefault(); // Stop the default Submit button event
+
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+    const phone = phoneInput.value;
+    const email = emailInput.value;
+    
+    if (isUsernameTaken(username)) {
+        alert("Account already exists.");
+        return;
+    }
+    if (!username) {
+        alert("Please enter your username.");
+        return;
+    } else if (password !== confirmPassword) {
+        alert("Password and Confirm Password do not match.");
+        return;
+    } else if (password.length < 6) {
+        alert("Password must contain at least 6 characters or more.");
+        return;
+    } else if (!phone) {
+        alert("Please enter your phone.");
+        return;
+    } else if (phone.length < 10) {
+        alert("The phone number is not in the correct format.");
+        return;
+    } else if (!email) {
+        alert("Please enter your email.");
+        return;
+    } else if (email.indexOf('@gmail.com') === -1) {
+        alert("The email is not in the correct format.");
+        return;
+    }
+
+    // Object containing the registration information to be imported
+    const registrationData = {
+        username: username,
+        password: password,
+        phone: phone,
+        email: email,
+    };
+
+    // Save registration information to Local Storage
+    localStorage.setItem('registrationData', JSON.stringify(registrationData));
+
+    alert("Sign Up Success! You will be redirected to the login page.");
+    window.location.href = "login.html";
+});
+
+</script>
+</html>
